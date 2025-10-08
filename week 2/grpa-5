@@ -1,0 +1,58 @@
+# --- 1. Get User Inputs ---
+
+# Get the main dish, remove whitespace, and convert to lowercase
+main_dish = input().strip().lower()
+
+# Get the time of day as an integer (e.g., 14 for 2 PM)
+time_of_day = int(input())
+
+# Get voucher status (expecting "true" or "false")
+has_voucher = input().strip().lower() == "true"
+
+# Get payment method (expecting "true" or "false" for card payment)
+is_card_payment = input().strip().lower() == "true"
+
+
+# --- 2. Calculate Initial Cost ---
+
+# Set initial cost based on the main dish
+if main_dish == "paneer tikka":
+    cost = 250
+elif main_dish == "butter chicken":
+    cost = 240
+elif main_dish == "masala dosa":
+    cost = 200
+else:
+    # If the dish is not on the menu, print an error and exit
+    print("Invalid main dish")
+    exit()
+
+
+# --- 3. Apply Discounts ---
+
+# Time-based discount (12 PM to 3 PM inclusive)
+# Corrected the logic from '12 <' to '12 <=' to include 12 PM
+if 12 <= time_of_day <= 15:
+    # Apply 15% lunch discount
+    cost *= 0.85
+
+# Voucher discount
+if has_voucher:
+    # Apply 10% voucher discount
+    cost *= 0.9
+
+
+# --- 4. Apply Surcharges ---
+
+# Card payment service charge
+if is_card_payment:
+    # Calculate and add a 5% service charge
+    service_charge = 0.05 * cost
+    cost += service_charge
+
+
+# --- 5. Print Final Cost ---
+
+# Print the final cost formatted to 2 decimal places
+# Corrected the f-string syntax
+print(f"{cost:.2f}")
