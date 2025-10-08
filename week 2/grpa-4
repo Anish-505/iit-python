@@ -1,0 +1,80 @@
+import math
+
+# Multi-purpose application functions
+
+def odd_num_check(number: int) -> str:
+    """Checks if a number is odd."""
+    return "yes" if number % 2 != 0 else "no"
+
+def perfect_square_check(number: int) -> str:
+    """Checks if a number is a perfect square."""
+    # A non-negative number is a perfect square if its integer square root, when squared, equals the number.
+    if number < 0:
+        return "no"
+    root = int(math.sqrt(number))
+    return "yes" if root * root == number else "no"
+
+def vowel_check(text: str) -> str:
+    """Checks if a string contains any vowels."""
+    vowels = "aeiouAEIOU"
+    return "yes" if any(char in vowels for char in text) else "no"
+
+def divisibility_check(number: int) -> str:
+    """Checks if a number is divisible by 2, 3, or both."""
+    if number % 2 == 0 and number % 3 == 0:
+        return "divisible by 2 and 3"
+    elif number % 2 == 0:
+        return "divisible by 2"
+    elif number % 3 == 0:
+        return "divisible by 3"
+    else:
+        # Corrected the logic for the 'else' case
+        return "not divisible by 2 and 3"
+
+def palindrominator(text: str) -> str:
+    """Creates a palindrome from a string."""
+    # Returns the text plus its reverse (excluding the last character)
+    # to form a palindrome like 'race' -> 'racecar'.
+    # If the text has 1 or 0 characters, it's already a palindrome.
+    return text + text[-2::-1] if len(text) > 1 else text
+
+def simple_interest(principal_amount: int, n_years: int) -> int:
+    """Calculates simple interest with a variable rate."""
+    # Sets rate to 5% if tenure is less than 10 years, otherwise 8%.
+    rate = 0.05 if n_years < 10 else 0.08
+    interest = principal_amount * rate * n_years
+    return round(interest)
+
+# The main function
+def main():
+    """Reads an operation and executes the corresponding function."""
+    operation = input().strip()
+
+    if operation == "odd_num_check":
+        number = int(input())
+        print(odd_num_check(number))
+        
+    elif operation == "perfect_square_check":
+        number = int(input())
+        print(perfect_square_check(number))
+        
+    elif operation == "vowel_check":
+        text = input().strip()
+        print(vowel_check(text))
+        
+    elif operation == "divisibility_check":
+        number = int(input())
+        print(divisibility_check(number))
+        
+    elif operation == "palindrominator":
+        text = input().strip()
+        print(palindrominator(text))
+        
+    elif operation == "simple_interest":
+        principal_amount = int(input())
+        n_years = int(input())
+        print(simple_interest(principal_amount, n_years))
+
+# This line runs the main function when the script is executed.
+if __name__ == "__main__":
+    main()
