@@ -1,0 +1,64 @@
+if task == "factors":
+    n = int(input())
+    for i in range(1, n + 1):
+        if n % i == 0:
+            print(i)
+
+elif task == "find_min":
+    n = int(input())
+    minimum = int(input())  # Read first number as initial minimum
+    for i in range(1, n):  # Read remaining n-1 numbers
+        num = int(input())
+        if num < minimum:
+            minimum = num
+    print(minimum)
+
+elif task == "prime_check":
+    n = int(input())
+    if n <= 1:
+        print("False")
+    else:
+        is_prime = True
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                is_prime = False
+                break
+        print("True" if is_prime else "False")
+
+elif task == "is_sorted":
+    s = input()
+    is_sorted = True
+    for i in range(1, len(s)):
+        if s[i] < s[i-1]:
+            is_sorted = False
+            break
+    print("True" if is_sorted else "False")
+
+elif task == "any_true":
+    n = int(input())
+    any_divisible = False
+    for i in range(n):
+        num = int(input())
+        if num % 3 == 0:
+            any_divisible = True
+            break
+    print("True" if any_divisible else "False")
+
+elif task == "manhattan":
+    x, y = 0, 0  # Starting position
+    while True:
+        direction = input()
+        if direction == "STOP":
+            break
+        elif direction == "UP":
+            y += 1
+        elif direction == "DOWN":
+            y -= 1
+        elif direction == "LEFT":
+            x -= 1
+        elif direction == "RIGHT":
+            x += 1
+    
+    # Calculate Manhattan distance from origin (0,0)
+    manhattan_distance = abs(x) + abs(y)
+    print(manhattan_distance)
